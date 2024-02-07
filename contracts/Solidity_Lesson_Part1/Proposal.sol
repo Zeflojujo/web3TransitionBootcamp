@@ -1,7 +1,9 @@
 //SPDX-License-Identifier: MIT
-pragma solidity 0.8.19;
+pragma solidity ^0.8.19;
 
 contract ProposalContract {
+
+    uint256 private counter; // Counter variable for tracking proposal ids
 
     struct Proposal {
         string description; // Description of the proposal

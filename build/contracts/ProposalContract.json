@@ -1,0 +1,392 @@
+{
+  "contractName": "ProposalContract",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/Solidity_Lesson_Part1/Proposal.sol\":\"ProposalContract\"},\"evmVersion\":\"shanghai\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/Solidity_Lesson_Part1/Proposal.sol\":{\"keccak256\":\"0x75a76aa211321a9b26245e2c92bf11fcfb5ab6e948d743594fb93e266c6d61f9\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://cc8aa59b54711cb5000ea753c59c8432a0061aa9506fcc0e469042da53811deb\",\"dweb:/ipfs/QmUnTyC537hB137fvDaQz1HKXhVWVPQs58TAUKdgoNnmQ7\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600e575f80fd5b50603e80601a5f395ff3fe60806040525f80fdfea264697066735822122091a691727ceaf61d612b291ae67ff1e0e3a6384a91cdd6134213120e92fd8ebf64736f6c63430008150033",
+  "deployedBytecode": "0x60806040525f80fdfea264697066735822122091a691727ceaf61d612b291ae67ff1e0e3a6384a91cdd6134213120e92fd8ebf64736f6c63430008150033",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "57:771:1:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "57:771:1:-:0;;;;;",
+  "source": "//SPDX-License-Identifier: MIT\npragma solidity ^0.8.19;\n\ncontract ProposalContract {\n\n    uint256 private counter; // Counter variable for tracking proposal ids\n\n    struct Proposal {\n        string description; // Description of the proposal\n        string title; // Title of the proposal\n        uint256 approve; // Number of approve votes\n        uint256 reject; // Number of reject votes\n        uint256 pass; // Number of pass votes\n        uint256 total_vote_to_end; // When the total votes in the proposal reaches this limit, proposal ends\n        bool current_state; // This shows the current state of the proposal, meaning whether if passes of fails\n        bool is_active; // This shows if others can vote to our contract\n    }\n\n    mapping(uint256 => Proposal) proposal_history; // Recordings of previous proposals\n\n}",
+  "sourcePath": "/home/temba/Documents/Bootcamp/web3TransitionBootcamp/contracts/Solidity_Lesson_Part1/Proposal.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/Solidity_Lesson_Part1/Proposal.sol",
+    "exportedSymbols": {
+      "ProposalContract": [
+        109
+      ]
+    },
+    "id": 110,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 84,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".19"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "31:24:1"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "ProposalContract",
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "fullyImplemented": true,
+        "id": 109,
+        "linearizedBaseContracts": [
+          109
+        ],
+        "name": "ProposalContract",
+        "nameLocation": "66:16:1",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 86,
+            "mutability": "mutable",
+            "name": "counter",
+            "nameLocation": "106:7:1",
+            "nodeType": "VariableDeclaration",
+            "scope": 109,
+            "src": "90:23:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_uint256",
+              "typeString": "uint256"
+            },
+            "typeName": {
+              "id": 85,
+              "name": "uint256",
+              "nodeType": "ElementaryTypeName",
+              "src": "90:7:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_uint256",
+                "typeString": "uint256"
+              }
+            },
+            "visibility": "private"
+          },
+          {
+            "canonicalName": "ProposalContract.Proposal",
+            "id": 103,
+            "members": [
+              {
+                "constant": false,
+                "id": 88,
+                "mutability": "mutable",
+                "name": "description",
+                "nameLocation": "199:11:1",
+                "nodeType": "VariableDeclaration",
+                "scope": 103,
+                "src": "192:18:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 87,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "192:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 90,
+                "mutability": "mutable",
+                "name": "title",
+                "nameLocation": "258:5:1",
+                "nodeType": "VariableDeclaration",
+                "scope": 103,
+                "src": "251:12:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 89,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "251:6:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 92,
+                "mutability": "mutable",
+                "name": "approve",
+                "nameLocation": "306:7:1",
+                "nodeType": "VariableDeclaration",
+                "scope": 103,
+                "src": "298:15:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 91,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "298:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 94,
+                "mutability": "mutable",
+                "name": "reject",
+                "nameLocation": "358:6:1",
+                "nodeType": "VariableDeclaration",
+                "scope": 103,
+                "src": "350:14:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 93,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "350:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 96,
+                "mutability": "mutable",
+                "name": "pass",
+                "nameLocation": "408:4:1",
+                "nodeType": "VariableDeclaration",
+                "scope": 103,
+                "src": "400:12:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 95,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "400:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 98,
+                "mutability": "mutable",
+                "name": "total_vote_to_end",
+                "nameLocation": "454:17:1",
+                "nodeType": "VariableDeclaration",
+                "scope": 103,
+                "src": "446:25:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                },
+                "typeName": {
+                  "id": 97,
+                  "name": "uint256",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "446:7:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 100,
+                "mutability": "mutable",
+                "name": "current_state",
+                "nameLocation": "560:13:1",
+                "nodeType": "VariableDeclaration",
+                "scope": 103,
+                "src": "555:18:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 99,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "555:4:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 102,
+                "mutability": "mutable",
+                "name": "is_active",
+                "nameLocation": "672:9:1",
+                "nodeType": "VariableDeclaration",
+                "scope": 103,
+                "src": "667:14:1",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_bool",
+                  "typeString": "bool"
+                },
+                "typeName": {
+                  "id": 101,
+                  "name": "bool",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "667:4:1",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  }
+                },
+                "visibility": "internal"
+              }
+            ],
+            "name": "Proposal",
+            "nameLocation": "173:8:1",
+            "nodeType": "StructDefinition",
+            "scope": 109,
+            "src": "166:571:1",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 108,
+            "mutability": "mutable",
+            "name": "proposal_history",
+            "nameLocation": "772:16:1",
+            "nodeType": "VariableDeclaration",
+            "scope": 109,
+            "src": "743:45:1",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Proposal_$103_storage_$",
+              "typeString": "mapping(uint256 => struct ProposalContract.Proposal)"
+            },
+            "typeName": {
+              "id": 107,
+              "keyName": "",
+              "keyNameLocation": "-1:-1:-1",
+              "keyType": {
+                "id": 104,
+                "name": "uint256",
+                "nodeType": "ElementaryTypeName",
+                "src": "751:7:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint256",
+                  "typeString": "uint256"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "743:28:1",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_uint256_$_t_struct$_Proposal_$103_storage_$",
+                "typeString": "mapping(uint256 => struct ProposalContract.Proposal)"
+              },
+              "valueName": "",
+              "valueNameLocation": "-1:-1:-1",
+              "valueType": {
+                "id": 106,
+                "nodeType": "UserDefinedTypeName",
+                "pathNode": {
+                  "id": 105,
+                  "name": "Proposal",
+                  "nameLocations": [
+                    "762:8:1"
+                  ],
+                  "nodeType": "IdentifierPath",
+                  "referencedDeclaration": 103,
+                  "src": "762:8:1"
+                },
+                "referencedDeclaration": 103,
+                "src": "762:8:1",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Proposal_$103_storage_ptr",
+                  "typeString": "struct ProposalContract.Proposal"
+                }
+              }
+            },
+            "visibility": "internal"
+          }
+        ],
+        "scope": 110,
+        "src": "57:771:1",
+        "usedErrors": [],
+        "usedEvents": []
+      }
+    ],
+    "src": "31:797:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.21+commit.d9974bed.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2024-02-07T12:33:11.213Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
