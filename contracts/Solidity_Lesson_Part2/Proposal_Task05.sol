@@ -49,6 +49,39 @@ contract ProposalContract {
         owner = new_owner;
     }
 
+    function create(string calldata _description, string calldata _title, uint256 _total_vote_to_end) external onlyOwner {
+        counter += 1;
+        proposal_history[counter] = Proposal(_description, _title, 0, 0, 0, _total_vote_to_end, false, true);
+    }
+
+    function vote(uint8 choice) external active newVoter(msg.sender){
+        Proposal storage proposal = proposal_history[counter];
+        uint256 total_vote = proposal.approve + proposal.reject + proposal.pass;
+
+        voted_addresses.push(msg.sender);
+
+        if(choice == 1) {
+            proposal.approve += 1;
+            proposal.current_state = calculateCurrentState();
+        } else if(choice == 2) {
+            proposal.reject += 1;
+            proposal.current_state = calculateCurrentState();
+        }
+        else if(choice == 3) {
+            proposal.pass += 1;
+            proposal.current_state = calculateCurrentState();
+        }
+
+        if((proposal.total_vote_to_end - total_vote == 1) && ( choice == 1 || choice == 2 || choice ==3 )) {
+            proposal.is_active = false;
+            voted_addresses = [owner];
+        }
+    }
+
+    function terminateProposal() external onlyOwner active {
+        proposal_history[counter].is_active = false;
+    }
+
     function calculateCurrentState() private view returns(bool) {
         Proposal storage proposal = proposal_history[counter];
 
@@ -80,33 +113,23 @@ contract ProposalContract {
 
     }
 
-    function create(string calldata _description, string calldata _title, uint256 _total_vote_to_end) external onlyOwner {
-        counter += 1;
-        proposal_history[counter] = Proposal(_description, _title, 0, 0, 0, _total_vote_to_end, false, true);
+    // ****************** Query Functions ***********************
+
+    function isVoted(address _address) public view returns(bool){
+        for(uint i=0; i < voted_addresses.length; i++){
+            if(voted_addresses[i] == _address){
+                return true;
+            }
+        }
+        return false;
     }
 
-    function vote(uint8 choice) external active newVoter(msg.sender){
-        Proposal storage proposal = proposal_history[counter];
-        uint256 total_vote = proposal.approve + proposal.reject + proposal.pass;
+    function getCurrentProposal() external view returns (Proposal memory) {
+        return proposal_history[counter];
+    }
 
-        voted_addresses.push(msg.sender);
-
-        if(choice == 1) {
-            proposal.approve += 1;
-            proposal.current_state = calculateCurrentState();
-        } else if(choice == 2) {
-            proposal.reject += 1;
-            proposal.current_state = calculateCurrentState();
-        }
-        else if(choice == 3) {
-            proposal.pass += 1;
-            proposal.current_state = calculateCurrentState();
-        }
-
-        if((proposal.total_vote_to_end - total_vote == 1) && ( choice == 1 || choice == 2 || choice ==3 )) {
-            proposal.is_active = false;
-            voted_addresses = [owner];
-        }
+    function getProposal(uint256 number) external view returns (Proposal memory) {
+        return proposal_history[number];
     }
 
 }
